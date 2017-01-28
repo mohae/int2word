@@ -3,7 +3,7 @@
 // Use of this source code is governed by the MIT license
 // that can be found in the LICENSE file.
 
-// Package int2word converts integers to their word equivelants.
+// Package int2word converts integers to their word equivalents: number to words.
 package int2word
 
 import "strings"
