@@ -18,22 +18,24 @@ var (
 
 // Lower returns the word representation of an int as words. This is an alias to
 // Word
-func Lower(i int) string {
+func Lower(i int64) string {
 	return Word(i)
 }
 
 // Title returns the word representation of an int using title case.
-func Title(i int) string {
+func Title(i int64) string {
 	return strings.ToTitle(Word(i))
 }
 
-// Capitalized
-func Capitalized(i int) string {
+// Capitalized returns the word representation of an int with the first
+// word capitalized.
+func Capitalized(i int64) string {
 	s := Word(i)
 	return string(s[0]-0x20) + s[1:] // make the first char UPPER
 }
 
-func Word(v int) string {
+// Word returns the word equivalent of a number. The words are all lower-case.
+func Word(v int64) string {
 	// shortcut on small numbers
 	if v == 0 {
 		return "zero"
@@ -45,11 +47,11 @@ func Word(v int) string {
 		v = -v
 	}
 
-	var parts []int
-	var r int
+	var parts []int16
+	var r int16
 	// break into chunks of 3 digits
 	for v > 0 {
-		r = v % 1000
+		r = int16(v % 1000)
 		v = v / 1000
 		parts = append(parts, r)
 	}
@@ -73,11 +75,7 @@ func Word(v int) string {
 		if s == "" {
 			continue
 		}
-		/*		if scale[i] == "" {
-					words = append(words, s)
-					continue
-				}
-		*/
+
 		if i == l {
 			if neg {
 				words = "minus " + s + " " + scale[i]
@@ -91,14 +89,12 @@ func Word(v int) string {
 		} else {
 			words += " " + s + " " + scale[i]
 		}
-
-		//		words = append(words, fmt.Sprintf("%s %s", s, scale[i]))
 	}
-	//	return strings.Join(words, " ")
+
 	return words
 }
 
-func hundreds(v int) string {
+func hundreds(v int16) string {
 	// If it's <= 20, just return the value.
 	if v <= 20 {
 		return small[v]

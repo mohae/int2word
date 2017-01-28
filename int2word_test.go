@@ -3,7 +3,7 @@ package int2word
 import "testing"
 
 var tests = []struct {
-	number int
+	number int64
 	lower  string
 }{
 	{0, "zero"},
@@ -163,7 +163,7 @@ func TestLower(t *testing.T) {
 
 func TestHundreds(t *testing.T) {
 	hTests := []struct {
-		v int
+		v int16
 		s string
 	}{
 		{0, ""},
